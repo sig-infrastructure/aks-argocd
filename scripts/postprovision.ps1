@@ -1,0 +1,1 @@
+azd env get-values | ForEach-Object { if ($_ -match "^(.*?)=`"(.*)`"$") { [System.Environment]::SetEnvironmentVariable($matches[1], $matches[2], "Process"); Set-Variable -Name $matches[1] -Value $matches[2] } }
