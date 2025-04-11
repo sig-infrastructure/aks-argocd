@@ -41,7 +41,6 @@ module logAnalyticsWorkspaceModule 'logAnalyticsWorkspaceModule.bicep' = {
     location: location
     tags: tags
     workspaceName: '${abbrs.operationalInsightsWorkspaces}${resourceToken}'
-    
   }
 }
 
@@ -79,8 +78,8 @@ module vault 'br/public:avm/res/key-vault/vault:0.11.0' = {
 }
 
 
-// module managedCluster 'br/public:avm/res/container-service/managed-cluster:0.8.3' = {
-  module managedCluster './modules/container-service/managed-cluster/main.bicep' = {
+module managedCluster 'br/public:avm/res/container-service/managed-cluster:0.8.3' = {
+  // module managedCluster './modules/container-service/managed-cluster/main.bicep' = {
   name: 'managedClusterDeployment-mgmt'
   scope: rg
   params: {
@@ -101,7 +100,6 @@ module vault 'br/public:avm/res/key-vault/vault:0.11.0' = {
         minCount: 1
         mode: 'System'
         name: 'systempool'
-        
         nodeTaints: [
           'CriticalAddonsOnly=true:NoSchedule'
         ]
